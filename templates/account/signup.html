@@ -1,0 +1,20 @@
+<!-- accounts/templates/account/signup.html -->
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mx-auto mt-8 max-w-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Sign Up</h1>
+    <form method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- This will apply crispy styling to the form -->
+        <button type="submit" class="w-full bg-green-500 text-white py-2 rounded mt-4 hover:bg-green-600">
+            Sign Up
+        </button>
+    </form>
+    <p class="mt-4 text-center">
+        Already have an account?
+        <a href="{% url 'account_login' %}" class="text-blue-500 hover:underline">Login here</a>.
+    </p>
+</div>
+{% endblock %}

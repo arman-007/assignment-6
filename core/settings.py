@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,15 +46,28 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'tailwind',
-    'theme',
+    # 'theme',
+    'crispy_forms',
+    'crispy_tailwind',
 
     # Installed apps
     'inventory',
     'accounts',
 ]
 
-TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = "/usr/local/bin/npm"
+SITE_ID = 1
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ['tailwind']
+CRISPY_TEMPLATE_PACK = 'tailwind'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# TAILWIND_APP_NAME = 'theme'
+# NPM_BIN_PATH = "/usr/local/bin/npm"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,9 +86,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # allauth backend
 )
 
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignupForm',  # Path to your custom signup form
+}
+
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Optional: to require email verification
-LOGIN_REDIRECT_URL = '/'  # Redirect to homepage after login
+LOGIN_REDIRECT_URL = '/admin'  # Redirect to homepage after login
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/inactive/'# Custom URL after signup
 LOGOUT_REDIRECT_URL = '/'  # Redirect to homepage after logout
 
 
@@ -83,9 +102,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates',  # This is for project-wide templates
-        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,  # This will look for a 'templates' folder in each app
         'OPTIONS': {
             'context_processors': [

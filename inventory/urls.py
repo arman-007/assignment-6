@@ -8,7 +8,7 @@ urlpatterns = [
     # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     # path('signup/', views.signup, name='signup'),
     # path('profile/', views.profile, name='profile'),
-    path('property/create/', views.create_property, name='create_property'),
-    path('property/<int:property_id>/edit/', views.edit_property, name='edit_property'),
-    path('property/<int:property_id>/delete/', views.delete_property, name='delete_property'),
+    # path('create/', views.property_create, name='create_property'),
+    # path('<int:property_id>/edit/', views.property_edit, name='edit_property'),
+    # path('<int:property_id>/delete/', views.property_delete, name='delete_property'),
 ]

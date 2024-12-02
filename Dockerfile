@@ -1,29 +1,28 @@
 # Use official Python image
 FROM python:3.11-slim
 
+# Install GDAL and other system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gdal-bin \
+    libgdal-dev \
+    python3-gdal && \
+    rm -rf /var/lib/apt/lists/*
+
 # Set working directory
 WORKDIR /app
 
-# Install dependencies
+# Copy only requirements.txt
 COPY requirements.txt /app/
-RUN pip install -r requirements.txt
-# Add GDAL installation commands to your Dockerfile
-RUN apt-get update && \
-    apt-get install -y gdal-bin libgdal-dev python3-gdal && \
 
-# Copy project files
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
 COPY . /app/
 
 # Expose the port
 EXPOSE 8000
-
-# Change ownership of the app directory
-ARG UID=1000
-ARG GID=1000
-RUN chown -R ${UID}:${GID} /app
-
-# Switch to the new user
-USER ${UID}:${GID}
 
 # Start Django server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
