@@ -57,6 +57,8 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4' 
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = ['tailwind']
 CRISPY_TEMPLATE_PACK = 'tailwind'
 
@@ -94,7 +96,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Optional: to require email verification
 LOGIN_REDIRECT_URL = '/admin'  # Redirect to homepage after login
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/inactive/'# Custom URL after signup
-LOGOUT_REDIRECT_URL = '/'  # Redirect to homepage after logout
+# ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/inactive/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to homepage after logout
 
 
 ROOT_URLCONF = 'core.urls'
