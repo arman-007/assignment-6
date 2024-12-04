@@ -12,7 +12,7 @@ class Location(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     center = models.PointField()
-    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', db_column="parent_id")
     location_type = models.CharField(max_length=20, choices=LocationType.choices())#
     country_code = models.CharField(max_length=2)
     state_abbr = models.CharField(max_length=3)
@@ -37,7 +37,7 @@ class Accommodation(models.Model):
     usd_rate = models.DecimalField(max_digits=10, decimal_places=2)
     center = models.PointField()
     images = ArrayField(models.CharField(max_length=300), blank=True, default=list)
-    location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location_id = models.ForeignKey(Location, on_delete=models.CASCADE, db_column="location_id")
     amenities = ArrayField(models.CharField(max_length=100), blank=True, default=list)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     published = models.BooleanField(default=False)
@@ -55,7 +55,7 @@ class Accommodation(models.Model):
 
 class LocalizeAccommodation(models.Model):
     id = models.AutoField(primary_key=True)
-    property_id = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
+    property_id = models.ForeignKey(Accommodation, on_delete=models.CASCADE, db_column="property_id")
     language = models.CharField(max_length=2, choices=LanguageCode.choices())#
     description = models.TextField()
     policy = JSONField(default=dict)
