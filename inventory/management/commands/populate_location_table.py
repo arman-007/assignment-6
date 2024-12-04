@@ -3,7 +3,8 @@ import csv
 import os
 from django.core.management.base import BaseCommand
 from django.utils.dateparse import parse_datetime
-from myapp.models import Location, LocationType
+from inventory.models import Location
+from inventory.enums import LocationType
 from django.contrib.gis.geos import Point
 
 class Command(BaseCommand):

@@ -1,13 +1,13 @@
 from enum import Enum
 
 class LocationType(Enum):
-    COUNTRY = 'Country'
-    STATE = 'State'
-    CITY = 'City'
+    COUNTRY = 'COUNTRY'
+    STATE = 'STATE'
+    CITY = 'CITY'
 
     @classmethod
     def choices(cls):
-        return [(tag, tag.value) for tag in cls]
+        return [(tag.value, tag.name) for tag in cls]
 
 
 class LanguageCode(Enum):
