@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import JSONField
+from django.core.exceptions import ValidationError
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
@@ -46,6 +47,11 @@ class Accommodation(models.Model):
     def __str__(self):
         return self.title
     
+    def clean(self):
+        if self.review_score < 0 or self.review_score > 9.9:
+            raise ValidationError({'review_score': 'Review score must be between 0 and 9.9'})
+        super().clean() 
+    
 
 class LocalizeAccommodation(models.Model):
     id = models.AutoField(primary_key=True)
@@ -56,3 +62,9 @@ class LocalizeAccommodation(models.Model):
 
     def __str__(self):
         return f"Localized description for {self.property_id.title} ({self.language})"
+    
+    def clean(self):
+        # Custom validation for the 'policy' field
+        if not isinstance(self.policy, dict):
+            raise ValidationError({"policy": "Policy must be a dictionary."})
+        super().clean()
