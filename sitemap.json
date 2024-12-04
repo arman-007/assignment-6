@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "test location": {
+            "slug": "test-location",
+            "locations": [
+                {
+                    "test1": "test-location/test1"
+                }
+            ]
+        }
+    },
+    {
+        "twt": {
+            "slug": "twt",
+            "locations": []
+        }
+    }
+]

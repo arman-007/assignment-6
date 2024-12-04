@@ -10,12 +10,13 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Fetch all locations and organize them by country
         countries = {}
-        locations = Location.objects.filter(location_type='country').order_by('title')
+        locations = Location.objects.filter(location_type='COUNTRY').order_by('title')
+        print(locations)
 
         for country in locations:
             # Get child locations (states, provinces, etc.) for each country
             child_locations = (
-                Location.objects.filter(parent_id=country, location_type='state')
+                Location.objects.filter(parent_id=country, location_type='STATE')
                 .order_by('title')
                 .values('title', 'id')
             )

@@ -72,7 +72,7 @@ def reverse_partitioning(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0008_alter_accommodation_location_id_and_more'),  # Adjust to your last migration
+        ('inventory', '0002_auto_partition_localize_accommodation'),  # Adjust to your last migration
     ]
 
     operations = [

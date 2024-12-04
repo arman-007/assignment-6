@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         # Add the dependency for the migration where the LocalizeAccommodation model was defined
-        ('inventory', '0005_alter_location_location_type'),
+        ('inventory', '0001_initial'),
     ]
 
     operations = [
