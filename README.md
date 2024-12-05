@@ -59,6 +59,18 @@ To run the project using Docker, follow these steps:
    - The Django application will be available at `http://127.0.0.1:8000`.
    - The admin panel can be accessed at `http://127.0.0.1:8000/admin`.
 
+## Test
+   Create a superuser to access the admin panel:
+   ```bash
+   docker exec -it assignment-6-web-1 python manage.py test inventory.test
+   ```
+   this will run test and for coverage report:
+   ```bash
+   docker exec -it assignment-6-web-1 coverage report
+   ```
+
+
+
 ## How to Use
 
 ### Admin Panel
