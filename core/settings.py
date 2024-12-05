@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'tailwind',
+    # 'allauth.socialaccount',
+    # 'tailwind',
     # 'theme',
     'crispy_forms',
     'crispy_tailwind',
@@ -61,15 +61,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ['tailwind']
 CRISPY_TEMPLATE_PACK = 'tailwind'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# TAILWIND_APP_NAME = 'theme'
-# NPM_BIN_PATH = "/usr/local/bin/npm"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,10 +84,8 @@ ACCOUNT_FORMS = {
 }
 
 ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Optional: to require email verification
 LOGIN_REDIRECT_URL = '/admin'  # Redirect to homepage after login
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/inactive/'# Custom URL after signup
-# ACCOUNT_INACTIVE_REDIRECT_URL = '/accounts/inactive/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to homepage after logout
 
 
